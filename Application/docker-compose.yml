@@ -1,3 +1,9 @@
+volumes:
+  caddy_data:
+  caddy_config:
+
+#TODO Create a docker network
+
 services:
   caddy:
     image: caddy:2.10-alpine
@@ -17,7 +23,3 @@ services:
       - ./web:/usr/share/nginx/html:ro
 #    expose:
 #      - "80"
-
-volumes:
-  caddy_data:
-  caddy_config:
