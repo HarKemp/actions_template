@@ -26,8 +26,8 @@ jobs:
             git pull origin main
 
             echo "Restarting docker containers ..."
-            cd ~/GitRepositories/actions_template
+            cd ~/GitRepositories/actions_template/Application
             docker compose down
-            docker compose up -d
+            docker compose up -d --remove-orphans
 
             echo "Deploy finished"
