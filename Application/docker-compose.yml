@@ -2,24 +2,36 @@ volumes:
   caddy_data:
   caddy_config:
 
-#TODO Create a docker network
+networks:
+  netw:
+    driver: bridge
+
+  # Šo nemainīt - šis tīkls piesaista caddy konteineru citam ārējam nginx konteinerim, 
+  # kas novirza attiecīgo tīkla trafiku (kas pienāk no *.cloud.harak.net domēna portā 80 un 443) uz
+  # tieši šim projektam piesaistīto caddy konteineru. 
+  # To jādara, jo uz šī servera būs arī citu projektu caddy konteineri un viņi visi nevar 
+  # izmantot to pašu 80 un 443 portu 
+  edge_net:
+    external: true
 
 services:
   caddy:
     image: caddy:2.10-alpine
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      netw: {}
 
+      # Šo nemainīt
+      edge_net:
+        ipv4_address: 10.10.0.10
   web:
     image: nginx:1.29-alpine
     restart: unless-stopped
     volumes:
       - ./web:/usr/share/nginx/html:ro
-#    expose:
-#      - "80"
+    networks:
+      netw: {}

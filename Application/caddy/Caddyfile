@@ -8,8 +8,7 @@ test.cloud.harak.net {
 # Šajā sarakstā var pievienot vēl papildus domēna vārdus kuriem ir piesaistītas citas web lapas,
 # bet pagaidām, tām vienmēr ir jābeidzas ar .cloud.harak.net, jo domēnus, kas ir *.harak.net es esmu
 # rezervējis citām lietām.
-# Tik pat labi, šeit var arī ielikt pilnīgi citu domēna vārdu (kad tas būs nopirkts un konfigurēts),
-# piemēram, projekts.com, un viss turpinās funkcionēt, kā paredzēts.
+# Tik pat labi, šeit var arī ielikt pilnīgi citu domēna vārdu (kad tas būs nopirkts un konfigurēts)
 #test1.cloud.harak.net {
 #        encode gzip
 #        reverse_proxy cits_web_konteineris:80
