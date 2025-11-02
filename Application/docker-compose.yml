@@ -1,3 +1,5 @@
+name: actions-template
+
 volumes:
   caddy_data:
   caddy_config:
